@@ -3,13 +3,25 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+
+    
+      let svar = 2 + 3 * (2-4)*6;
+      let ikke_svar = 2 + 3 *2-4*6;
+      let utrykk1 = "2 + 3 * (2-4)*6 = " ;
+      let utrykk2 = "2 + 3 *2-4*6 = ";
+printOut(utrykk1);
+printOut(svar);
+printOut(utrykk2);
+printOut(ikke_svar);
+
+
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+let Meters = 25;
+let cm = 34;
+let inches = (Meters*39.3700787) + (cm*0.393700787)
+printOut(inches.toFixed(2));
 printOut(newLine);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
@@ -52,3 +64,5 @@ printOut("--- Part 10 ----------------------------------------------------------
 /* Put your code below here!*/
 printOut("Replace this with you answer!");
 printOut(newLine);
+
+
