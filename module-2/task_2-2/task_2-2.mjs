@@ -18,25 +18,32 @@ printOut("25 meter og 34cm er " + inches.toFixed(2) + " inches");
 printOut(newLine);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
-let days = 3;
-let hours = 12;
+let day = 3;
+let hour = 12;
 let minnutes = 14;
 let sek = 45;
-let convert = (sek / 60) + minnutes + hours * 60 + days * 24 * 60;
+let convert = (sek / 60) + minnutes + hour * 60 + day * 24 * 60;
 printOut("3dager, 12 timer, 14 minutter og 45 sekunder = " + convert + " minutter");
 printOut(newLine);
 
-printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
-let min = 6322.52;
-let convertsek = min * 60;
-let converthours = min / 60;
-let convertdays = converthours / 24;
 
-//not done flaws in code gonna fix later
-printOut("Sek: " +convertsek.toFixed(2));
-printOut("Minutes: " + min);
-printOut("Hours: " + converthours.toFixed(2));
-printOut("Days: " + convertdays.toFixed(2));
+
+printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
+
+let totalMinutes = 6322.52; 
+let totalSeconds = totalMinutes * 60;
+let days = Math.floor(totalSeconds / (24 * 3600));
+totalSeconds = totalSeconds % (24 * 3600);
+let hours = Math.floor(totalSeconds / 3600);
+totalSeconds = totalSeconds % 3600;
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = Math.floor(totalSeconds % 60);
+
+printOut(totalMinutes + " minutter er " + days + " dager, " + hours + " timer, " + minutes + " minutter, " + seconds + " sekunder");
+
+printOut(newLine);
+// ...existing code...
+
 printOut(newLine);
 
 printOut("--- Part 5 ----------------------------------------------------------------------------------------------");
