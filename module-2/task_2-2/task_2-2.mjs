@@ -3,18 +3,17 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
-let svar = 2 + 3 * (2-4)*6;
-let ikke_svar = 2 + 3 *2-4*6;
-let utrykk1 = "2 + 3 * (2-4)*6 = " ;
-let utrykk2 = "2 + 3 *2-4*6 = ";
-printOut(utrykk1 + svar);
-printOut(utrykk2 + ikke_svar);
+let svar = 2 + 3 * (2-4) * 6;
+let ikke_svar = 2 + 3 * 2-4 * 6;
+printOut("2 + 3 * (2-4)*6 = "  + svar);
+printOut("2 + 3 *2-4*6 = " + ikke_svar);
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 let Meters = 25;
 let cm = 34;
-let inches = (Meters*39.3700787) + (cm*0.393700787)
+let milimeter = (Meters*1000) + (cm*10);
+let inches = milimeter / 25.4;
 printOut("25 meter og 34cm er " + inches.toFixed(2) + " inches");
 printOut(newLine);
 
@@ -32,6 +31,8 @@ let min = 6322.52;
 let convertsek = min * 60;
 let converthours = min / 60;
 let convertdays = converthours / 24;
+
+//not done flaws in code gonna fix later
 printOut("Sek: " +convertsek.toFixed(2));
 printOut("Minutes: " + min);
 printOut("Hours: " + converthours.toFixed(2));
@@ -101,5 +102,6 @@ let rest = 131 % 7;
 let weeks = Math.floor(131 / 7);
 printOut("131 days is: " + weeks + " weeks and " + rest + " days");
 printOut(newLine);
+
 
 
