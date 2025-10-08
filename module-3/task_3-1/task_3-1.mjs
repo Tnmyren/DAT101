@@ -62,14 +62,37 @@ printOut(newLine);
 
 /* Task 10*/
 printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-const noOfMonth2 = monthList2.length;
-const monthList2 =["January", "February", "Mars", "April", "Mai",
-"Jun", "Juli", "August", "September", "October", "November", "December"];
-const monthName2 = monthList2[Math.floor(Math.random() * noOfMonth2)];
-if (monthList2 == "mars" || monthList2 == "mai")
-  printOut("the gallery is closed");
-else if (monthList2 == "april")
-  printOut("Themp access from building next dorr");
-  else printOut("the gallery is open");
-printOut(monthList2);
+let noOfMonth2 = monthList.length;
+let monthName2 = monthList[Math.floor(Math.random() * noOfMonth2)];
+
+
+if (monthName2 == "Mars" || monthName2 == "Mai"){
+  printOut("the gallery is closed");}
+
+else if (monthName2 == "April"){
+  printOut("Themp access from building next door");}
+  
+else printOut("the gallery is open");{
+printOut(monthName2);}
+
+
+
+
 printOut(newLine);
+
+/* Task 11*/
+printOut("--- Part 11 ---------------------------------------------------------------------------------------------")
+
+let animal = "cow";
+
+switch (animal) {
+  case "cat":
+    printOut("Meow");;
+    break;
+  case "cow":
+    printOut("Moo");
+    break;
+  case "dog":
+    printOut("Woof");
+    }
+    
