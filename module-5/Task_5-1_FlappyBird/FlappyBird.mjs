@@ -1,6 +1,7 @@
 "use strict";
 // Import necessary modules
 import { TSpriteCanvas } from "libSprite";
+import { TBackGround } from "./background";
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -27,9 +28,13 @@ const SpriteInfoList = {
 };
 
 const EGameStatus = { idle: 0 };
-
+const background = new TBackGround
 
 //--------------- Functions ----------------------------------------------//
+
+function drawGame(){
+ background.draw
+}
 
 function loadGame() {
   console.log("Game Loaded");
@@ -38,6 +43,7 @@ function loadGame() {
   cvs.height = SpriteInfoList.background.height; 
 
   // Overload the spcvs draw function here!
+  spcvs.onDraw = drawGame;
 
 } // end of loadGame
 
