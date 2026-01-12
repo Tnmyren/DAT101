@@ -7,7 +7,8 @@ export class TBackGround{
     #SpriteGround;
     constructor(aSpcvs, aSPI){
         this.#SpriteBackGround = new TSprite(aSpcvs, aSPI.background,0,0);
-        this.#SpriteGround = new TSprite(aSpcvs, aSPI.ground, 0, 400);
+        const groundposy = aSPI.background.height - aSPI.ground.height;
+        this.#SpriteGround = new TSprite(aSpcvs, aSPI.ground, 0, groundposy);
     }
 
     draw(){
@@ -16,4 +17,7 @@ export class TBackGround{
     }
 
 }
+
+
+
 
