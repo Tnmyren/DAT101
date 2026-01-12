@@ -2,7 +2,7 @@
 
 import { TSprite, TSpriteCanvas } from "libSprite";
 
-class TBackGround{
+export class TBackGround{
     #SpriteBackGround;
     #SpriteGround;
     constructor(aSpcvs, aSPI){
