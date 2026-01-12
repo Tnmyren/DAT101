@@ -1,6 +1,7 @@
 "use strict";
 // Import necessary modules
 import { TSpriteCanvas } from "libSprite";
+import { Tbackground} from "./background.js";
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -31,6 +32,9 @@ const EGameStatus = { idle: 0 };
 
 //--------------- Functions ----------------------------------------------//
 
+function drawGame(){
+ background.Draw();
+}
 function loadGame() {
   console.log("Game Loaded");
   // Set canvas size to background size
