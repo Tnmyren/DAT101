@@ -62,6 +62,7 @@ function loadGame() {
 function onKeyDown(aEvent) {
   switch (aEvent.code) {
     case "Space":
+      hero.flap()
       console.log("Space key pressed, flap the hero!");
       break;
   }

@@ -24,4 +24,9 @@ animate(){
     
     } 
 }
+
+flap(){
+    this.#speed = -2;
+    this.rotation = 0;
+}
 }
