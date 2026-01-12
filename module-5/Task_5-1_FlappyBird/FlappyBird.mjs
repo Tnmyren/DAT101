@@ -1,7 +1,7 @@
 "use strict";
 // Import necessary modules
 import { TSpriteCanvas } from "libSprite";
-import { TBackGround } from "./background";
+import { TBackGround } from "./background.js";
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -28,12 +28,12 @@ const SpriteInfoList = {
 };
 
 const EGameStatus = { idle: 0 };
-const background = new TBackGround
+const backGround = new TBackGround(spcvs, SpriteInfoList);
 
 //--------------- Functions ----------------------------------------------//
 
 function drawGame(){
- background.draw
+ backGround.draw();
 }
 
 function loadGame() {
