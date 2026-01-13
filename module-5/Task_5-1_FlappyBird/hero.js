@@ -23,7 +23,8 @@ animate(){
 
     
     } 
-}
+
+} 
 
 flap(){
     this.#speed = -2;

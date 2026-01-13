@@ -11,12 +11,24 @@ export class TBackGround{
         this.#SpriteGround = new TSprite(aSpcvs, aSPI.ground, 0, groundposy);
     }
 
-    draw(){
+    DrawB(){
         this.#SpriteBackGround.draw();
-        this.#SpriteGround.draw();
+    }
+    
+    DrawG(){
+    this.#SpriteGround.draw();
     }
 
-}
+    animate(){
+        const x = this.#SpriteGround.x + (this.#SpriteGround.width / 2);
+      if (x < 5){
+        this.#SpriteGround.x = 0;
+        
+      } else{
+        this.#SpriteGround.x--;
+      }
+    }
+    }
 
 
 
