@@ -1,6 +1,7 @@
 "use strict";
 
 import { TSprite, TSpriteCanvas } from "libSprite";
+import { EGameStatus } from "./FlappyBird.mjs";
 
 
 export class THero extends TSprite{
@@ -22,7 +23,10 @@ animate(){
     this.rotation = this.#speed*15; }
 
     
-    } 
+    } else {
+        EGameStatus.state = EGameStatus.GameOver
+        this.animationSpeed = 0;
+    }
 
 } 
 

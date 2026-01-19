@@ -1,11 +1,13 @@
 "use strict";
 
-import { TSprite } from "libSprite"
+import { TSprite } from "libSprite";
+import {hero, EGameStatus } from "./FlappyBird.mjs"
+
 
 
 const EasyFlyerGap = 150;
 const HardFlyerGap = 100;
-const MinimumProtrusion = 30;
+const MinimumProtrusion = 20;
 
 export class Tobstacle {
   #spUp;
@@ -50,6 +52,12 @@ get x(){
   animate(){
     this.#spDown.x--;
     this.#spUp.x--;
+    let hascollided = hero.hasCollided(this.#spUp) || hero.hasCollided(this.#spDown)
+   if (hascollided) {
+    EGameStatus.state = EGameStatus.Heroisdead;
+    hero.animationSpeed = 0;
+    hero.flap();
+   }
   }
 
 }

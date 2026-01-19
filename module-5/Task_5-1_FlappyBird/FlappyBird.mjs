@@ -4,6 +4,7 @@ import { TSpriteCanvas } from "libSprite";
 import { TBackGround } from "./background.js";
 import { THero } from "./hero.js";
 import { Tobstacle } from "./obstacle.js";
+import { TBait } from "./bait.js";
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -29,10 +30,14 @@ const SpriteInfoList = {
   medal:        { x: 985 , y: 635 , width: 44   , height: 44  , count: 4  },
 };
 
-const EGameStatus = { idle: 0 };
+export const EGameStatus = { idle: 0, gaming: 1, Heroisdead: 2, GameOver: 3,
+  state: 1
+};
+
 const backGround = new TBackGround(spcvs, SpriteInfoList);
-const hero = new THero(spcvs, SpriteInfoList.hero1);
+export const hero = new THero(spcvs, SpriteInfoList.hero1);
 const obstacles = []
+const Baits = []
 
 
 //--------------- Functions ----------------------------------------------//
@@ -41,12 +46,21 @@ function spawnobstacle(){
   const obstacle = new Tobstacle(spcvs, SpriteInfoList.obstacle)
   obstacles.push(obstacle);
   const randomtimer = Math.ceil(Math.random() * 6) + 2;
-console.log(randomtimer)
   setTimeout(spawnobstacle, randomtimer * 500)
+}
+
+function SpawnBait(){
+const bait = new TBait(spcvs, SpriteInfoList.food)
+Baits.push(bait);
+
 }
 
 function animateGame() {
 hero.animate();
+for(let i = 0;  i < Baits.length; i++){
+    const bait = Baits[i]
+     bait.animate();
+  if (EGameStatus.state == EGameStatus.gaming ) {
   backGround.animate();
   let deleteob = false;
   for(let i = 0;  i < obstacles.length; i++){
@@ -55,26 +69,29 @@ hero.animate();
      if (obstacle.x < -65){
       deleteob = true;
      }
+
      }
 if(deleteob){
   obstacles.splice(0, 1);
 }
-  
-  
-  
 }
+}
+  }
 
 
 function drawGame(){
 
  backGround.DrawB();
+ for(let i = 0;  i < Baits.length; i++){
+    const bait = Baits[i]
+     bait.draw();
+  }
  for(let i = 0;  i < obstacles.length; i++){
     const obstacle = obstacles[i]
      obstacle.draw();
   }
  backGround.DrawG();
- hero.draw();
-
+hero.draw();
  
 }
 
@@ -91,12 +108,14 @@ function loadGame() {
   //start animate engine
   setInterval(animateGame, 10);
   setTimeout(spawnobstacle, 1000)
+  setTimeout(SpawnBait, 1000)
 } // end of loadGame
 
 
 function onKeyDown(aEvent) {
   switch (aEvent.code) {
     case "Space":
+      if (EGameStatus.state == EGameStatus.gaming)
       hero.flap()
       console.log("Space key pressed, flap the hero!");
       break;
