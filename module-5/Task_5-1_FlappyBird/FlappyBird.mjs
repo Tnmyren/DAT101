@@ -5,6 +5,7 @@ import { TBackGround } from "./background.js";
 import { THero } from "./hero.js";
 import { Tobstacle } from "./obstacle.js";
 import { TBait } from "./bait.js";
+import { TMeny } from "./Meny.js";
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -31,36 +32,59 @@ const SpriteInfoList = {
 };
 
 export const EGameStatus = { idle: 0, gaming: 1, Heroisdead: 2, GameOver: 3,
-  state: 1
+  state: 0
 };
 
 const backGround = new TBackGround(spcvs, SpriteInfoList);
 export const hero = new THero(spcvs, SpriteInfoList.hero1);
 const obstacles = []
 const Baits = []
+const meny = new TMeny(spcvs, SpriteInfoList)
 
 
 //--------------- Functions ----------------------------------------------//
 
+export function StartGame(){
+  EGameStatus.state = EGameStatus.gaming;
+  setTimeout(spawnobstacle, 1000)
+  setTimeout(SpawnBait, 2000)
+}
+
 function spawnobstacle(){
+  if (EGameStatus.state = EGameStatus.gaming){
   const obstacle = new Tobstacle(spcvs, SpriteInfoList.obstacle)
   obstacles.push(obstacle);
   const randomtimer = Math.ceil(Math.random() * 6) + 2;
   setTimeout(spawnobstacle, randomtimer * 500)
+  }
 }
 
 function SpawnBait(){
-const bait = new TBait(spcvs, SpriteInfoList.food)
-Baits.push(bait);
-
+  if (EGameStatus.state = EGameStatus.gaming){
+ const bait = new TBait(spcvs, SpriteInfoList.food)
+ Baits.push(bait);
+ const randomtimer = Math.ceil(Math.random() * 10) + 2;
+  setTimeout(SpawnBait, randomtimer * 1000)
+  }
 }
 
 function animateGame() {
 hero.animate();
+let eaten = -1;
 for(let i = 0;  i < Baits.length; i++){
     const bait = Baits[i]
      bait.animate();
-  if (EGameStatus.state == EGameStatus.gaming ) {
+    if(bait.DistanceTo(hero.center) < 20) {
+    eaten = i;
+    }
+  
+   }
+   if (eaten >= 0) {
+    console.log("spist emmmm") 
+    Baits.splice(eaten, 1)
+   }
+  
+if (EGameStatus.state == EGameStatus.gaming ) {
   backGround.animate();
   let deleteob = false;
   for(let i = 0;  i < obstacles.length; i++){
@@ -76,7 +100,7 @@ if(deleteob){
 }
 }
 }
-  }
+  
 
 
 function drawGame(){
@@ -92,6 +116,8 @@ function drawGame(){
   }
  backGround.DrawG();
 hero.draw();
+
+meny.draw();
  
 }
 
@@ -107,8 +133,6 @@ function loadGame() {
 
   //start animate engine
   setInterval(animateGame, 10);
-  setTimeout(spawnobstacle, 1000)
-  setTimeout(SpawnBait, 1000)
 } // end of loadGame
 
 
