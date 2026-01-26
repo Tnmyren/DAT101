@@ -1,7 +1,7 @@
 "use strict";
 
 import { TSprite } from "libSprite";
-import {hero, EGameStatus } from "./FlappyBird.mjs"
+import {hero, EGameStatus, meny } from "./FlappyBird.mjs"
 
 
 
@@ -56,7 +56,9 @@ get x(){
    if (hascollided) {
     EGameStatus.state = EGameStatus.Heroisdead;
     hero.animationSpeed = 0;
+    meny.stopsound()
     hero.flap();
+    hero.dead();
    }
   }
 
