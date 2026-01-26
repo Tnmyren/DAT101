@@ -1,7 +1,7 @@
 "use strict";
 
 import {TSprite, TSpriteButton, TSpriteNumber} from "libSprite" 
-import { StartGame, EGameStatus } from "./FlappyBird.mjs";
+import { StartGame } from "./FlappyBird.mjs";
 import {TSoundFile} from "libSound";
 
 
@@ -13,6 +13,7 @@ export class TMeny{
     #SPcountdown;
     #SFcountdown;
     #SFrunning
+    #spGameScore
     constructor(aSpcvs, aSPI){
         this.#SPflappy = new TSprite(aSpcvs, aSPI.flappyBird, 320, 50)
         this.#SPplaybutt = new TSpriteButton(aSpcvs, aSPI.buttonPlay, 350, 120)
@@ -22,6 +23,8 @@ export class TMeny{
         this.#SPcountdown.visible = false;
         this.#SFcountdown = null;
         this.#SFrunning = null;
+        this.#spGameScore = new TSpriteNumber(aSpcvs, aSPI.numberSmall, 10, 10)
+        this.#spGameScore.alpha = 0.9;
     }
 
 
@@ -32,6 +35,7 @@ export class TMeny{
         this.#SPflappy.draw();
         this.#SPplaybutt.draw();
         this.#SPcountdown.draw();
+        this.#spGameScore.draw();
     }
 
     countdown(){
@@ -57,4 +61,10 @@ export class TMeny{
     stopsound(){
         this.#SFrunning.stop()
     }
+
+    highscore(poeng){
+        this.#spGameScore.value += poeng;
+    }
+
+
 }

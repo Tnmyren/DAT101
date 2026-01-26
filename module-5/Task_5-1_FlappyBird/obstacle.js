@@ -53,6 +53,10 @@ get x(){
     this.#spDown.x--;
     this.#spUp.x--;
     let hascollided = hero.hasCollided(this.#spUp) || hero.hasCollided(this.#spDown)
+
+    if (hero.x == this.#spDown.x + 5) {
+      meny.highscore(1)
+    }
    if (hascollided) {
     EGameStatus.state = EGameStatus.Heroisdead;
     hero.animationSpeed = 0;

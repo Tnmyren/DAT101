@@ -83,6 +83,7 @@ for(let i = 0;  i < Baits.length; i++){
    }
    if (eaten >= 0) {
     console.log("spist emmmm")
+    meny.highscore(4)
     hero.Eatensound();
     Baits.splice(eaten, 1)
    }
