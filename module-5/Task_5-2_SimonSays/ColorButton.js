@@ -26,9 +26,14 @@ if (isover){
         return true;
     } else return false;
 }
-
 }
-
+onMouseDown(){
+    //no need to call super
+    this.index = 1;
+}
+onMouseUp(){
+    this.index = 0;
+}
 
 
 }
