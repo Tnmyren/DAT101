@@ -1,7 +1,7 @@
 "use strict";
 //--------------- Objects and Variables ----------------------------------//
-import { TSpriteCanvas } from "libSprite";
-import {TGameBoard} from "./gameboard.js"
+import { TSpriteCanvas } from "libSprite"
+import {TGameBoard} from "./gameBoard.js"
 
 // prettier-ignore
 export const SpriteInfoList = {
@@ -14,7 +14,7 @@ export const SpriteInfoList = {
   number:         { x: 0, y: 2344, width:  23, height:  34, count: 10, dst: { x: 313, y: 385 } },
 };
 
-const cvs = document.getElementById("cvs");
+const cvs = document.getElementById("cvs");  
 const spcvs = new TSpriteCanvas(cvs);
 
 export const EGameStatusType = { Idle: 0 };
@@ -22,7 +22,7 @@ export const EGameStatusType = { Idle: 0 };
 export const gameProps = {
 };
 
-const Background = new TGameBoard(spcvs, SpriteInfoList);
+const GameBackground = new TGameBoard(spcvs, SpriteInfoList);
 
 //--------------- Functions ----------------------------------------------//
 function loadGame() {
@@ -33,7 +33,7 @@ function loadGame() {
 
 
 function drawGame() {
-
+GameBackground.draw()
   // Always draw all game elements, just control their visibility with the visible property
 }
 
