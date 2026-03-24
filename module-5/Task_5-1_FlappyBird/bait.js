@@ -1,44 +1,34 @@
-"use strict";
-
+"use strict"
 import { TSprite } from "libSprite";
 import { EGameStatus } from "./FlappyBird.mjs";
-import {TSineWave} from "lib2d"
+import { TSineWave } from "lib2d"
 
-
-
-export class TBait extends TSprite{ 
-    
-    #speed;
+export class TBait extends TSprite{
+    #speed
     #wave;
-    #backspeed
-    constructor(aSpcvs, aSPI){
 
-         super(aSpcvs, aSPI, 600, 35);
-         const amp = Math.ceil(Math.random()* 3);
-         this.#speed = Math.ceil(Math.random(0.1, 0.2) * 10) /10;
-         this.#backspeed = 0.4
-         this.#wave = new TSineWave(amp, 1)
 
-         this.y = this.#wave.value;
-         this.animationSpeed = this.#speed * 50;
-        
+    constructor(aSpcvs, aSPI) {
+        super(aSpcvs, aSPI, 300, 35)
+
+        const amp = Math.ceil(Math.random() * 3)
+        this.#speed = Math.ceil(Math.random() * 10) / 10
+        this.#wave = new TSineWave(amp, 1)
+        this.y = this.#wave.value
+        this.animationSpeed = this.#speed * 50
     }
 
-    animate(){
-        
+    animate() {
         if (EGameStatus.state === EGameStatus.gaming) {
-
-        this.translate(-this.#backspeed, this.#wave.value)
-    } else {
-        this.translate(this.#backspeed, this.#wave.value)
-    } }
-    DistanceTo(aPoint){
-        const dx = Math.pow(this.center.x - aPoint.x, 2)
-        const dy = Math.pow(this.center.y -aPoint.y, 2);
-        return Math.sqrt(dx+dy);
+            this.translate(-this.#speed, this.#wave.value)
+        }else {
+            this.translate(this.#speed, this.#wave.value)
+        }
     }
 
+  distanceTo(aPoint) {
+    const dx = Math.pow(this.center.x - aPoint.x, 2);
+    const dy = Math.pow(this.center.y - aPoint.y, 2);
+    return Math.sqrt(dx + dy);
+  }
 }
-
-
- 

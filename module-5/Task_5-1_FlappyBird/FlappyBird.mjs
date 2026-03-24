@@ -1,11 +1,11 @@
 "use strict";
 // Import necessary modules
 import { TSpriteCanvas } from "libSprite";
-import { TBackGround } from "./background.js";
+import { TBackground } from "./background.js";
 import { THero } from "./hero.js";
-import { Tobstacle } from "./obstacle.js";
-import { TBait } from "./bait.js";
-import { TMeny } from "./Meny.js";
+import { TObstacle } from "./obstacle.js";
+import { TBait } from "./bait.js"
+import { TMenu } from "./menu.js"
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
@@ -31,101 +31,108 @@ const SpriteInfoList = {
   medal:        { x: 985 , y: 635 , width: 44   , height: 44  , count: 4  },
 };
 
-export const EGameStatus = { idle: 0, countdown: 1, gaming: 2, Heroisdead: 3, GameOver: 4,
+export const EGameStatus = { idle: 0, countDown: 1, gaming: 2, heroIsDead: 3, gameOver: 4,
   state: 0
 };
 
-const backGround = new TBackGround(spcvs, SpriteInfoList);
+const background = new TBackground(spcvs, SpriteInfoList);
 export const hero = new THero(spcvs, SpriteInfoList.hero1);
+export let soundMuted = false
+export let dayNight = 1
+
 const obstacles = []
-const Baits = []
-export const meny = new TMeny(spcvs, SpriteInfoList)
-
-
+const baits = []
+export const menu = new TMenu(spcvs, SpriteInfoList)
 
 //--------------- Functions ----------------------------------------------//
-
-
-export function StartGame(){
-  EGameStatus.state = EGameStatus.gaming;
-  setTimeout(spawnobstacle, 1000)
-  setTimeout(SpawnBait, 2000)
+export function startGame (){
+  EGameStatus.state = EGameStatus.gaming
+    spawnObstacle()
+  setTimeout(spawnBait,1000)
 }
 
-function spawnobstacle(){
-  if (EGameStatus.state === EGameStatus.gaming){
-  const obstacle = new Tobstacle(spcvs, SpriteInfoList.obstacle)
-  obstacles.push(obstacle);
-  const randomtimer = Math.ceil(Math.random() * 6) + 2;
-  setTimeout(spawnobstacle, randomtimer * 500)
+
+function spawnBait() {
+  if (EGameStatus.state == EGameStatus.gaming) {
+    const bait = new TBait(spcvs, SpriteInfoList.food)
+    baits.push(bait)
+    const nextTime = Math.ceil(Math.random()* 4) + 1
+    setTimeout(spawnBait, nextTime* 1000 )
   }
 }
 
-function SpawnBait(){
-  if (EGameStatus.state === EGameStatus.gaming){
- const bait = new TBait(spcvs, SpriteInfoList.food)
- Baits.push(bait);
- const randomtimer = Math.ceil(Math.random() * 10) + 2;
-  setTimeout(SpawnBait, randomtimer * 1000)
+function spawnObstacle() {
+  if (EGameStatus.state == EGameStatus.gaming) {
+    const obstacle = new TObstacle(spcvs, SpriteInfoList.obstacle)
+    obstacles.push(obstacle)
+    const nextTime = Math.ceil(Math.random()* 4) + 1
+    setTimeout(spawnObstacle, nextTime* 1000 )
   }
 }
 
 function animateGame() {
-hero.animate();
-let eaten = -1;
-for(let i = 0;  i < Baits.length; i++){
-    const bait = Baits[i]
-     bait.animate();
-    if(bait.DistanceTo(hero.center) < 40) {
-    eaten = i;
+  hero.animate(); 
+
+  let eaten = -1
+  for (let i = 0; i < baits.length; i++){
+    const bait = baits[i]
+    bait.animate()
+  
+    if (bait.distanceTo(hero.center) < 20) {
+      eaten = i
     }
-  
-   }
-   if (eaten >= 0) {
-    console.log("spist emmmm")
-    meny.highscore(4)
-    hero.Eatensound();
-    Baits.splice(eaten, 1)
-   }
-  
-if (EGameStatus.state == EGameStatus.gaming ) {
-  backGround.animate();
-  let deleteob = false;
-  for(let i = 0;  i < obstacles.length; i++){
-    const obstacle = obstacles[i]
-     obstacle.animate();
-     if (obstacle.x < -65){
-      deleteob = true;
-     }
+  }
+  if (eaten >= 0) {
+    hero.eat()
+    console.log("Eaten")
+    baits.splice(eaten, 1)
+  }
 
-     }
-if(deleteob){
-  obstacles.splice(0, 1);
-}
-}
+  if (EGameStatus.state == EGameStatus.gaming) {
+    background.animate();
 
-}
   
+    let deleteObstacle =false
 
+    for (let i = 0; i< obstacles.length; i++){
+      const obstacle = obstacles[i]
+      obstacle.animate()
+      obstacles.splice()
+      if (obstacle.x < -55  ) {
+        deleteObstacle = true
+      } 
+
+    }
+    if (deleteObstacle) {
+      obstacles.splice(0, 1)
+
+    }
+  }  else {
+    return
+  }
+  
+  // obstacle2.animate()
+}
 
 function drawGame(){
-
- backGround.DrawB();
- for(let i = 0;  i < Baits.length; i++){
-    const bait = Baits[i]
-     bait.draw();
+  background.drawBackground();
+  hero.draw()
+  for (let i = 0; i < baits.length; i++) {
+    const bait = baits[i]
+        bait.draw()  
   }
- for(let i = 0;  i < obstacles.length; i++){
+
+  for (let i = 0; i< obstacles.length; i++){
     const obstacle = obstacles[i]
-     obstacle.draw();
+    obstacle.draw()
   }
- backGround.DrawG();
-hero.draw();
+  // obstacle2.draw()
+  // obstacle2.
 
-meny.draw();
- 
+  background.drawGround()
+  menu.draw()
+
 }
-
 
 function loadGame() {
   console.log("Game Loaded");
@@ -136,16 +143,21 @@ function loadGame() {
   // Overload the spcvs draw function here!
   spcvs.onDraw = drawGame;
 
-  //start animate engine
-  setInterval(animateGame, 10);
+  setInterval(animateGame, 10)
+  // setTimeout(spawnObstacle, 1000)
+  
+
+
 } // end of loadGame
 
 
 function onKeyDown(aEvent) {
   switch (aEvent.code) {
     case "Space":
-      if (EGameStatus.state == EGameStatus.gaming)
-      hero.flap()
+      if (EGameStatus.state == EGameStatus.gaming) {
+        hero.flap()
+      }
+
       console.log("Space key pressed, flap the hero!");
       break;
   }
@@ -153,13 +165,18 @@ function onKeyDown(aEvent) {
 
 function setSoundOnOff(){
   // Mute or unmute the game sound based on checkbox
-
+  soundMuted = chkMuteSound.checked
+  console.log(soundMuted)
 } // end of setSoundOnOff
 
-function setDayNight(aEvent){ 
+export function setDayNight(aEvent){ 
   // Set day or night mode based on radio buttons
   // Day mode is when value is 1, night mode is 0, you can use this as a boolean, 1=true, 0=false
   // e.g., isDayMode = (aEvent.target.value == 1);
+  dayNight = aEvent.target.value
+  background.drawBackground()
+  background.drawGround()
+
   console.log(`Day/Night mode changed: ${aEvent.target.value}`);
 
 } // end of setDayNight

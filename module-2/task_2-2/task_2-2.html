@@ -12,31 +12,32 @@
     <ol>
       <li>Where should you use constants, and where should you use variables? Can they all be constants?</li>
       <p>
-				When we dont want the value to change, we use const. When the value can change, we use let. They cannot all be constants because some values need to change during the program's execution.
+				For values that need to be changed, they cannot be constant. If a value is not really meant to change, it is safer to keep as a constant.
 			</p>
       <li>How do parentheses affect the arithmetic outcome of an expression?</li>
       <p>
-				Paranteser kan endre rekkefølgen på regnestykkene og vi kan få annet utfall når vi legger sammen, ganger, trekker ifra eller deler.
+				In math, values within a parenthesis must be solved first.
 			</p>
       <li>How do we limit floating-point numbers to a given number of decimals?</li>
       <p>
-				vi kan bruke "variabel".toString(2); eller "variabel".tofixed(2) for å begrense antall desimaler til 2, inni parantesen kan man velge hvor mange desimaler.
+				The toFixed function can limit a decimal value to whatever number of decimals that are necessary.
 			</p>
       <li>How can we compare two floating-point values to see if they are equal (is 12.199999 the same as 12.2)?</li>
       <p>
-				man kan bruke "<, > og ==" for å sammenligne to flyttall. for å skjekke om disse er like kan man bruke ==, og her vil den returnere false siden de ikke er like.
+				Comparing the number with a number.epsilon function, we can reliably see whether they are equal or not. 
 			</p>
       <li>What do comparison operators return, and how can we check if they are FALSE or TRUE?</li>
       <p>
-				Den returnerer en boolean, som enten er true eller false. Vi kan sjekke dette ved å bruke en if-setning eller logge det i konsollen.
+				They return a Boolean value, and if the operator is “correct” it returns a true value. An if-statement that does something if the comparison operator is true would tell you whether the operator is right.
 			</p>
       <li>How does the Math.random() function work, and what can it be used for?</li>
       <p>
-				den leverer et tilfeldig tall mellom 0 og 1. Den kan brukes i spill for å generere tilfeldige hendelser eller tall. tallet er alltid under 1.
+				It gives a random value between a set range. Which is useful whenever something needs to be random.
 			</p>
       <li>What is modulus (%), and when do we need this operator in mathematical operations?</li>
       <p>
-				Den delere tallet og gir output hva hva som ikke kunne deles ut som foreksempel 501 / 100 vil du få 1 siden den ikke kan deles ut. det kan være nytting om du vil dele noe likt mellom prosesser
+				The modulus gives what remains after a division is done. Example: 10/3 doesn’t work. 9/3 works. 1 remains and is the modulus. It is necessary when you need to know what remains after an equal division.
+
 			</p>
     </ol>
 		<script type="module" src="./task_2-2.mjs" defer></script>

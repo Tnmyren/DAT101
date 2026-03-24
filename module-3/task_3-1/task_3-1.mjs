@@ -3,96 +3,109 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 printOut("--- Part 1, 2, 3 ----------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Task 1, 2 and 3");
 let wakeUpTime = 8;
-if (wakeUpTime == 7) {
-  printOut("I can take the bus to school."); }
-  else if (wakeUpTime == 8) { printOut("I can Take the train to school.");}
-else printOut("i have to take my car to school.");
+if (wakeUpTime == 6) {
+  printOut("I can take the bus to school.");
+} else if (wakeUpTime == 7) {
+  printOut("I can take the bus to school.");
+} else if (wakeUpTime == 8){
+  printOut("I can take the train to school.")
+} else {
+  printOut("I'll have to take the car to school.")
+}
 printOut(newLine);
 
 printOut("--- Part 4, 5 --------------------------------------------------------------------------------------------");
-let number = 0;
-if (number > 0) {
-printOut("The number is positive."); }
-else if (number < 0) { printOut("The number is negative.");}
-else printOut("The number is zero.");
-printOut(newLine);
-
-printOut("--- Part 6 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
+const p41 = 4
+const p42 = 67
+const p43 = -45
+const p44 = 0
 
-let random = Math.random(1,8) * 10;
-if (random.toFixed(0) >= 4) {
-  printOut("Thank you");}
-else printOut("The image is too small")
-/* test for å se at nummer stemmer med teskt printOut(random.toFixed(0)); */
+
+if (p41 > 0) {
+  printOut(p41 + " is Positive")
+} else if (p41 == 0) {
+  printOut(p41 + " is Zero")
+} else {
+  printOut(p41 + " is Negative")
+}
+
+if (p42 > 0) {
+  printOut(p42 + " is Positive")
+} else if (p42 == 0) {
+  printOut(p42 + " is Zero")
+} else {
+  printOut(p42 + " is Negative")
+}
+
+if (p43 > 0) {
+  printOut(p43 + " is Positive")
+} else if (p43 == 0) {
+  printOut(p43 + " is Zero")
+} else {
+  printOut(p43 + " is Negative")
+}
+
+if (p44 > 0) {
+  printOut(p44 + " is Positive")
+} else if (p44 == 0) {
+  printOut(p44 + " is Zero")
+} else {
+  printOut(p44 + " is Negative")
+}
+
 printOut(newLine);
 
-printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
-let random2 = Math.random(1,8) * 10; 
-if (random2.toFixed(0) <= 4) {
-  printOut("Image is to small"); }
-  else if (random2.toFixed(0) >= 6)
-    printOut("image is to big");
-else printOut("Thank you");
-/* test for å se at nummer stemmer med teskt printOut(random2.toFixed(0)); */
-printOut(newLine);
-
-printOut("--- Part 8 ----------------------------------------------------------------------------------------------");
+printOut("--- Part 6, 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+  let p6imageSize = (Math.floor(Math.random()*8) + 1)
+  printOut("File Size = " + p6imageSize)
+  
+  if (p6imageSize < 4) {
+    printOut("This image is to small");
+  } else if (p6imageSize >= 6) {
+    printOut("Image is too large")
+  } else {
+    printOut("Thank you")
+  }
+
 printOut(newLine);
 
-printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
-const monthList =["January", "February", "Mars", "April", "Mai",
-"Jun", "Juli", "August", "September", "October", "November", "December"];
-const daysinmonth = [ "january has 31 days", "February has 28 days", "Mars has 31 days", "April has 30 days", "Mai has 31 days",
-"Jun has 30 days", "Juli has 31 days", "August has 31 days", "September has 30 days", "October has 31 days", "November has 30 days", "December has 31 days"
-
-]
+printOut("--- Part 8, 9 ----------------------------------------------------------------------------------------------");
+/* Put your code below here!*/
+const monthList =["January", "February", "March", "April", "May",
+"June", "July", "August", "September", "October", "November", "December"];
 const noOfMonth = monthList.length;
 const monthName = monthList[Math.floor(Math.random() * noOfMonth)];
-if (monthName.toLowerCase().includes("r"))
-printOut("You must take vitamin D");
-else printOut("You don't need vitamin D");
-printOut(monthName);
-printOut( daysinmonth[monthList.indexOf(monthName)]);
+
+printOut("The month is: " + monthName);
+
+if (monthName == "January" || monthName == "March" || monthName == "May" || monthName == "July" || monthName == "August" || monthName == "October" || monthName == "December") {
+  printOut("This month has 31 days.")
+} else if (monthName == "February") {
+  printOut("This month has 28 days.")
+} else {
+  printOut("This month has 30 days.")
+}
+
+if (monthName.includes("r")) {
+  printOut("You need to take Vitamin D.")
+} else {
+  printOut("You do not need to take Vitamin D")
+}
 printOut(newLine);
 
 /* Task 10*/
 printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-let noOfMonth2 = monthList.length;
-let monthName2 = monthList[Math.floor(Math.random() * noOfMonth2)];
+/* Put your code below here!*/
 
-
-if (monthName2 == "Mars" || monthName2 == "Mai"){
-  printOut("the gallery is closed");}
-
-else if (monthName2 == "April"){
-  printOut("Themp access from building next door");}
-  
-else printOut("the gallery is open");{
-printOut(monthName2);}
-
-
-
+if (monthName == "March" || monthName == "May") {
+  printOut("Sadly, we are closed this month, due to renovations.")
+} else if (monthName == "April") {
+  printOut("Our main office is closed, but we are open next door.")
+} else {
+  printOut("We are open as usual.")
+} 
 
 printOut(newLine);
-
-/* Task 11*/
-printOut("--- Part 11 ---------------------------------------------------------------------------------------------")
-
-let animal = "cow";
-
-switch (animal) {
-  case "cat":
-    printOut("Meow");;
-    break;
-  case "cow":
-    printOut("Moo");
-    break;
-  case "dog":
-    printOut("Woof");
-    }
-    
